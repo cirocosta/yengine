@@ -1,20 +1,19 @@
 CXX = clang++-3.5
 CXXFLAGS = -Wall -std=c++11
+INCLUDES = -I/usr/local/include/
+LIBS = -L/usr/local/lib
+SOURCE = main.cpp
+
 LDLIBS = -lglfw
 
-OBJ_DIR = bin
+main: ./src/graphics/window.o
+	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $^
 
-SOURCE = main.cpp
-OBJECTS = ${SOURCE:%.cpp=$(OBJ_DIR)/%.o}
-EXECUTABLE = main
+./src/graphics/window.o: ./src/graphics/window.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-all: init $(OBJECTS) $(EXECUTABLE)
+.PHONY: clean
 
-$(EXECUTABLE):
-	$(CXX) $(LDFLAGS) $(LIB_DIR) -o $@ $(OBJECTS) $(LDLIBS)
-
-$(OBJ_DIR)/%.o: %.cpp
-	$(CXX) $(INC_DIR) -c $< -o $@
-
-init:
-	@mkdir -p "$(OBJ_DIR)"
+clean:
+	find . -name "*.o" -delete
+	rm main

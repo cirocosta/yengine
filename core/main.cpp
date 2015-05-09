@@ -2,15 +2,23 @@
  * Testing entry
  */
 
-#include <iostream>
 #include <GLFW/glfw3.h>
+#include <iostream>
+
+#include "src/graphics/window.h"
+
+using namespace yengine;
+using namespace graphics;
 
 int main ()
 {
-  if (!glfwInit())
-    std::cout << "Error" << std::endl;
-  else
-    std::cout << "success!" << std::endl;
+
+  Window window("yengine!", 800, 600);
+
+  // current game loop
+  while (!window.closed()) {
+    window.update();
+  }
 
   return 0;
 }
