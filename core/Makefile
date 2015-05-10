@@ -4,10 +4,10 @@ INCLUDES = -I/usr/local/include/
 LIBS = -L/usr/local/lib
 SOURCE = main.cpp
 
-LDLIBS = -lglfw
+LDLIBS = -lglfw -lGL
 
-main: ./src/graphics/window.o
-	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $^
+main: ./src/graphics/window.o main.cpp
+	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $<
 
 ./src/graphics/window.o: ./src/graphics/window.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<

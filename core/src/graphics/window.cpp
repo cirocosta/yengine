@@ -2,6 +2,11 @@
 
 namespace yengine { namespace graphics {
 
+  void windowResize(GLFWwindow *window, int width, int height)
+  {
+    glViewport(0, 0, width, height);
+  }
+
   Window::Window(const char *title, int width, int height)
   {
     m_Title = title;
@@ -14,6 +19,9 @@ namespace yengine { namespace graphics {
 
   Window::~Window()
   {
+    // destroys all the remaining windows and
+    // cursors, as well as restoring any other
+    // things associated with them.
     glfwTerminate();
   }
 
@@ -25,6 +33,8 @@ namespace yengine { namespace graphics {
       return false;
     }
 
+    // GLFWwindow encapsulates both a window and
+    // a context, which are inseparably linked.
     m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
 
     if (!m_Window) {
@@ -35,18 +45,39 @@ namespace yengine { namespace graphics {
     }
 
     glfwMakeContextCurrent(m_Window);
+    glfwSetWindowSizeCallback(m_Window, &windowResize);
     return true;
   }
 
   bool Window::closed() const
   {
-    return glfwWindowShouldClose(m_Window);
+    // closing a window happens by setting a
+    // flag. 'windowShouldClose' checks the flag
+    return glfwWindowShouldClose(m_Window) == 1;
   }
 
-  void Window::update() const
+  void Window::clear() const
   {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  }
+
+  // updates the screen at a given time.
+  void Window::update()
+  {
+    // processes all pending events that are
+    // ready in the queue
     glfwPollEvents();
+
+    /* glfwGetFramebufferSize(m_Window, &m_Width, &m_Height); */
+
+    // we need to swap buffers as glfw windows
+    // are by default double buffered, meaning
+    // that we have 2 rendering buffers, a front
+    // and a back buffer. The front is the one
+    // being displayed while that back is the one
+    // we render to.
     glfwSwapBuffers(m_Window);
   }
+
 
 }} // graphics  // yengine
