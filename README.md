@@ -30,6 +30,7 @@ $ sudo apt-get install libglm-dev libglew-dev libglfw3-dev
 
 - `m_` stands for private stuff in classes.
 - constants must be defined on the top of the class definition (remember that there's no problem of defining multiple `private` areas in a class)
+- standard 'c' functions go `like_but` while methods `GoLikeThis`
 
 
 

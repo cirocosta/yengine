@@ -6,14 +6,19 @@ SOURCE = main.cpp
 
 LDLIBS = -lGL -lglfw -lGLEW
 
-main: ./src/graphics/window.o main.cpp
+main: ./src/libyengine.a $(SOURCE)
 	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $<
 
-./src/graphics/window.o: ./src/graphics/window.cpp
+./src/libyengine.a: ./src/graphics/window.o
+	$(AR) rvs $@ $^
+
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
 
 .PHONY: clean
 
 clean:
 	find . -name "*.o" -delete
+	find . -name "*.a" -delete
 	rm main

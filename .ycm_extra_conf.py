@@ -81,12 +81,10 @@ flags = [
 '-isystem',
 './tests/gmock/include',
 
-'-I/usr/local/include/GLFW/',
-'-I/usr/include/GL/',
+'-I/usr/local/include/',
 '-I/usr/include/',
 '-L/usr/lib',
-'-I/usr/local/include',
-'-L /usr/local/lib/',
+'-L/usr/local/lib/',
 '-lGL -lglfw3 -lGLEW', # opengl stuff
 ]
 
