@@ -9,14 +9,17 @@ LDLIBS = -lGL -lglfw -lGLEW
 main: ./src/libyengine.a $(SOURCE)
 	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $<
 
-./src/libyengine.a: ./src/graphics/window.o
+./src/libyengine.a: ./src/graphics/window.o ./src/graphics/shader.o
 	$(AR) rvs $@ $^
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 
-.PHONY: clean
+.PHONY: clean run
+
+run: main
+	optirun ./main
 
 clean:
 	find . -name "*.o" -delete

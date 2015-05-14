@@ -9,11 +9,8 @@ namespace yengine { namespace graphics {
   void windowResize(GLFWwindow *window, int width, int height);
 
   Window::Window(const char *title, int width, int height)
+    : m_Title(title), m_Width(width), m_Height(height)
   {
-    m_Title = title;
-    m_Width = width;
-    m_Height = height;
-
     if (!init())
       glfwTerminate();
 
@@ -50,7 +47,6 @@ namespace yengine { namespace graphics {
 
       return false;
     }
-
 
     glfwMakeContextCurrent(m_Window);
     glfwSetWindowUserPointer(m_Window, this);

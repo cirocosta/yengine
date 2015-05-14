@@ -85,7 +85,7 @@ flags = [
 '-I/usr/include/',
 '-L/usr/lib',
 '-L/usr/local/lib/',
-'-lGL -lglfw3 -lGLEW', # opengl stuff
+# '-lGL -lglfw3 -lGLEW', # opengl stuff
 ]
 
 
