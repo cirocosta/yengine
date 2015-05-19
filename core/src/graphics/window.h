@@ -34,6 +34,15 @@ namespace yengine {
       double mx;
       double my;
     public:
+
+      /**
+       * Window is defined by a particular title
+       * and an initial width and height. As in
+       * my system config the window manager
+       * decides the size of the screen this is
+       * more like just a default thing that
+       * will get overridden later.
+       */
       Window(const char *name, int width, int height);
       ~Window();
 
@@ -48,7 +57,16 @@ namespace yengine {
       bool isMouseButtonPressed(unsigned int button) const;
       void getMousePosition(double& x, double& y) const;
     private:
+
+      /**
+       * Responsble for checking GLFW support as
+       * well as setting proper callbacks,
+       * creating the window and setting the
+       * current opengl context to it.
+       */
       bool init();
+
+      friend void framebuffer_size_callback(GLFWwindow* win, int w, int h);
       friend void mouse_button_callback(GLFWwindow* , int button,
                              int action, int mods);
       friend void key_callback(GLFWwindow* window, int key, int scancode,

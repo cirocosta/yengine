@@ -11,6 +11,9 @@ namespace yengine {
   public:
     static std::string read_file(const char* filename)
     {
+      // TODO include file presence checking
+      // with fstat. Would also be great to not
+      // rely on fread, but a more secure one.
       unsigned long length;
       char* data;
       FILE* file = fopen(filename, "rt");

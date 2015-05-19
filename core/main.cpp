@@ -1,54 +1,50 @@
-/**
- * Testing entry
- */
-
 #include "src/graphics/window.h"
 #include "src/graphics/shader.h"
-#include <GL/glext.h>
-#include <glm/gtc/type_ptr.hpp>
+
+#include "src/graphics/buffers/buffer.h"
+#include "src/graphics/buffers/indexbuffer.h"
+#include "src/graphics/buffers/vertexarray.h"
+
+#include "src/graphics/simple2drenderer.h"
+#include "src/graphics/renderable2d.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
-#include <iostream>
 
-using std::cout;
-using std::endl;
-
-using namespace yengine;
-using namespace graphics;
-
-int main ()
+int main()
 {
-  Window window("yengine!", 800, 600);
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  using namespace yengine;
+  using namespace graphics;
 
-  GLfloat vertices[] = {
-    4, 3, 0,
-    12, 3, 0,
-    4, 6, 0,
-    4, 6, 0,
-    12, 6, 0,
-    12, 3, 0
-  };
+  Window window("Yengine!", 960, 540);
+  glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
 
-  glm::mat4 projection = glm::ortho<GLfloat>(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 0.0f);
 
-  GLuint vbo;
-  glGenBuffers(1, &vbo);
-  glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-  glEnableVertexAttribArray(0);
-
-  Shader shader("./src/shaders/basic-vert.glsl", "./src/shaders/basic-frag.glsl");
+  glm::mat4 ortho = glm::ortho<GLfloat>(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
+  Shader shader("./src/shaders/basic-vert.glsl",
+                "./src/shaders/basic-frag.glsl");
   shader.enable();
-  shader.setUniformMat4("pr_matrix", projection);
-  shader.setUniform4f("colour", glm::vec4(0.2f, 0.4f, 0.1f, 1.0f));
-  shader.setUniform2f("light_pos", glm::vec2(0.0, 0.0));
+  shader.setUniformMat4("pr_matrix", ortho);
 
-  // current game loop
-  while (!window.closed()) {
+  Renderable2D* sprite = new Renderable2D(glm::vec3(4, 4, 0), glm::vec2(4, 4),
+                                          glm::vec4(1,0,1,1), shader);
+  Renderable2D* sprite2 = new Renderable2D(glm::vec3(7, 1, 0), glm::vec2(2, 3),
+                                          glm::vec4(0.2f,0,1,1), shader);
+  Simple2DRenderer renderer;
+
+  while (!window.closed())
+  {
     window.clear();
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    double x, y;
+    window.getMousePosition(x, y);
+    shader.setUniform2f("light_pos", glm::vec2(
+        (float)(x * 16.0f / 960.0f), (float)(9.0f - y * 9.0f / 540.0f))
+    );
+
+    renderer.submit(sprite);
+    renderer.submit(sprite2);
+    renderer.flush();
+
     window.update();
   }
 

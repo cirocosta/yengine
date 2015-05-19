@@ -1,12 +1,12 @@
 #include "window.h"
 
 namespace yengine { namespace graphics {
-
+  void framebuffer_size_callback(GLFWwindow* win, int w, int h);
   void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
   void mouse_button_callback(GLFWwindow* window, int button,
                              int action, int mods);
   void key_callback(GLFWwindow* window, int key, int s, int action, int m);
-  void windowResize(GLFWwindow *window, int width, int height);
+  void window_resize(GLFWwindow *window, int width, int height);
 
   Window::Window(const char *title, int width, int height)
     : m_Title(title), m_Width(width), m_Height(height)
@@ -23,16 +23,13 @@ namespace yengine { namespace graphics {
 
   Window::~Window()
   {
-    // destroys all the remaining windows and
-    // cursors, as well as restoring any other
-    // things associated with them.
     glfwTerminate();
   }
 
   bool Window::init()
   {
     if (!glfwInit()) {
-      std::cout << "Failed to initialize GLFW" << std::endl;
+      std::cerr << "Failed to initialize GLFW" << std::endl;
 
       return false;
     }
@@ -43,21 +40,20 @@ namespace yengine { namespace graphics {
 
     if (!m_Window) {
       glfwTerminate();
-      std::cout << "Failed to create window!" << std::endl;
+      std::cerr << "Failed to create window!" << std::endl;
 
       return false;
     }
 
     glfwMakeContextCurrent(m_Window);
     glfwSetWindowUserPointer(m_Window, this);
-    glfwSetWindowSizeCallback(m_Window, &windowResize);
+    glfwSetWindowSizeCallback(m_Window, window_resize);
     glfwSetKeyCallback(m_Window, key_callback);
     glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
     glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 
-
     if (glewInit() != GLEW_OK) {
-      std::cout << "could not initialize glew" << std::endl;
+      std::cerr << "could not initialize glew" << std::endl;
       return false;
     }
 
@@ -79,18 +75,11 @@ namespace yengine { namespace graphics {
   // updates the screen at a given time.
   void Window::update()
   {
-    // processes all pending events that are
-    // ready in the queue
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR)
+      std::cout << "Errrrrror:" << err << std::endl;
+
     glfwPollEvents();
-
-    /* glfwGetFramebufferSize(m_Window, &m_Width, &m_Height); */
-
-    // we need to swap buffers as glfw windows
-    // are by default double buffered, meaning
-    // that we have 2 rendering buffers, a front
-    // and a back buffer. The front is the one
-    // being displayed while that back is the one
-    // we render to.
     glfwSwapBuffers(m_Window);
   }
 
@@ -116,7 +105,7 @@ namespace yengine { namespace graphics {
     return m_Keys[keyCode];
   }
 
-  void windowResize(GLFWwindow *window, int width, int height)
+  void window_resize(GLFWwindow *window, int width, int height)
   {
     glViewport(0, 0, width, height);
   }
@@ -134,13 +123,20 @@ namespace yengine { namespace graphics {
     win->m_MouseButtons[button] = action != GLFW_RELEASE;
   }
 
-    void cursor_position_callback(GLFWwindow* window, double xpos,
-                                         double ypos)
-    {
-      Window *win = (Window*)glfwGetWindowUserPointer(window);
-      win->mx = xpos;
-      win->my = ypos;
-    }
+  void cursor_position_callback(GLFWwindow* window, double xpos,
+                                       double ypos)
+  {
+    Window *win = (Window*)glfwGetWindowUserPointer(window);
+    win->mx = xpos;
+    win->my = ypos;
+  }
+
+  void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+  {
+    Window *win = (Window*)glfwGetWindowUserPointer(window);
+    win->m_Width = width;
+    win->m_Height = height;
+  }
 
 }} // graphics  // yengine
 

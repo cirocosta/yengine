@@ -40,7 +40,7 @@ flags = [
 '-Wextra',
 '-Werror',
 '-Wno-unused-parameter',
-'-Wc++98-compat',
+'-Wnoc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -60,11 +60,6 @@ flags = [
 '-x',
 'c++',
 '-isystem',
-'../BoostParts',
-'-isystem',
-# This path will only work on OS X, but extra paths that don't exist are not
-# harmful
-'-isystem',
 '../llvm/include',
 '-isystem',
 '../llvm/tools/clang/include',
@@ -72,20 +67,10 @@ flags = [
 '.',
 '-I',
 './ClangCompleter',
-'-isystem',
-'./tests/gmock/gtest',
-'-isystem',
-'./tests/gmock/gtest/include',
-'-isystem',
-'./tests/gmock',
-'-isystem',
-'./tests/gmock/include',
-
 '-I/usr/local/include/',
 '-I/usr/include/',
 '-L/usr/lib',
 '-L/usr/local/lib/',
-# '-lGL -lglfw3 -lGLEW', # opengl stuff
 ]
 
 
