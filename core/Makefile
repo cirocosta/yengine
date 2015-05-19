@@ -9,7 +9,9 @@ OBJECTS = ./src/graphics/window.o \
 					./src/graphics/shader.o \
 					./src/graphics/buffers/buffer.o \
 					./src/graphics/buffers/indexbuffer.o \
-					./src/graphics/buffers/vertexarray.o
+					./src/graphics/buffers/vertexarray.o \
+					./src/graphics/simple2drenderer.o
+
 
 main: ./src/libyengine.a $(SOURCE)
 	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $<

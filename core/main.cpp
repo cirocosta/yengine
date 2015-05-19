@@ -5,6 +5,9 @@
 #include "src/graphics/buffers/indexbuffer.h"
 #include "src/graphics/buffers/vertexarray.h"
 
+#include "src/graphics/simple2drenderer.h"
+#include "src/graphics/renderable2d.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 
@@ -16,56 +19,18 @@ int main()
   Window window("Yengine!", 960, 540);
   glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
 
-  GLfloat vertices[] =
-  {
-    0, 0 ,0,
-    0, 3, 0,
-    8, 3, 0,
-    8, 0, 0
-  };
-
-  GLushort indices[] =
-  {
-    0, 1, 2,
-    2, 3, 0
-  };
-
-  GLfloat colorsA[] =
-  {
-    1, 0, 1, 1,
-    1, 0, 1, 1,
-    1, 0, 1, 1,
-    1, 0, 1, 1,
-  };
-
-  GLfloat colorsB[] =
-  {
-    0.2f, 0.3f, 0.8f, 1,
-    0.2f, 0.3f, 0.8f, 1,
-    0.2f, 0.3f, 0.8f, 1,
-    0.2f, 0.3f, 0.8f, 1,
-  };
-
-  VertexArray sprite1, sprite2;
-  IndexBuffer ibo(indices, 6);
-
-  sprite1.addBuffer(new Buffer(vertices, 4*3, 3), 0);
-  sprite1.addBuffer(new Buffer(colorsA, 4*4, 4), 1);
-
-  sprite2.addBuffer(new Buffer(vertices, 4*3, 3), 0);
-  sprite2.addBuffer(new Buffer(colorsB, 4*4, 4), 1);
 
   glm::mat4 ortho = glm::ortho<GLfloat>(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-
   Shader shader("./src/shaders/basic-vert.glsl",
                 "./src/shaders/basic-frag.glsl");
   shader.enable();
   shader.setUniformMat4("pr_matrix", ortho);
-  shader.setUniformMat4("ml_matrix",
-    glm::translate<GLfloat>(glm::mat4(1.0f), glm::vec3(4, 3, 0)));
 
-  shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
-  shader.setUniform4f("colour", glm::vec4(0.2f, 0.3f, 0.8f, 1.0f));
+  Renderable2D* sprite = new Renderable2D(glm::vec3(4, 4, 0), glm::vec2(4, 4),
+                                          glm::vec4(1,0,1,1), shader);
+  Renderable2D* sprite2 = new Renderable2D(glm::vec3(7, 1, 0), glm::vec2(2, 3),
+                                          glm::vec4(0.2f,0,1,1), shader);
+  Simple2DRenderer renderer;
 
   while (!window.closed())
   {
@@ -76,21 +41,9 @@ int main()
         (float)(x * 16.0f / 960.0f), (float)(9.0f - y * 9.0f / 540.0f))
     );
 
-    sprite1.bind();
-    ibo.bind();
-    shader.setUniformMat4("ml_matrix", glm::translate<GLfloat>(
-          glm::mat4(1.0f), glm::vec3(4, 3, 0)));
-    glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_SHORT, 0);
-    ibo.unbind();
-    sprite1.unbind();
-
-    sprite2.bind();
-    ibo.bind();
-    shader.setUniformMat4("ml_matrix", glm::translate<GLfloat>(
-          glm::mat4(1.0f), glm::vec3(0, 0, 0)));
-    glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_SHORT, 0);
-    ibo.unbind();
-    sprite2.unbind();
+    renderer.submit(sprite);
+    renderer.submit(sprite2);
+    renderer.flush();
 
     window.update();
   }

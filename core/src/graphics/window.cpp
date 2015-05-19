@@ -49,7 +49,6 @@ namespace yengine { namespace graphics {
     glfwSetWindowUserPointer(m_Window, this);
     glfwSetWindowSizeCallback(m_Window, window_resize);
     glfwSetKeyCallback(m_Window, key_callback);
-    /* glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback); */
     glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
     glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 
@@ -76,23 +75,12 @@ namespace yengine { namespace graphics {
   // updates the screen at a given time.
   void Window::update()
   {
-    // processes all pending events that are
-    // ready in the queue
-    glfwPollEvents();
-
-    /* glfwGetFramebufferSize(m_Window, &m_Width, &m_Height); */
-
-    // we need to swap buffers as glfw windows
-    // are by default double buffered, meaning
-    // that we have 2 rendering buffers, a front
-    // and a back buffer. The front is the one
-    // being displayed while that back is the one
-    // we render to.
-    glfwSwapBuffers(m_Window);
-
     GLenum err = glGetError();
     if (err != GL_NO_ERROR)
       std::cout << "Errrrrror:" << err << std::endl;
+
+    glfwPollEvents();
+    glfwSwapBuffers(m_Window);
   }
 
   bool Window::isMouseButtonPressed(unsigned int button) const
