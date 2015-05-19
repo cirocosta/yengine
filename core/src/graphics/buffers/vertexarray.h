@@ -20,8 +20,15 @@ namespace yengine { namespace graphics {
     std::vector<Buffer*> m_Buffers;
   public:
     VertexArray();
+    // also call glDeleteVertexArrays ?
     ~VertexArray();
 
+    /**
+     * Adds a buffer to the buffers vector.
+     * 'index' corresponds to the attribute that
+     * a buffer object will be 'bounded' to (an
+     * attribute from the vshader).
+     */
     void addBuffer(Buffer* buffer, GLuint index);
     void bind() const;
     void unbind() const;

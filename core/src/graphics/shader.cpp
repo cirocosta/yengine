@@ -39,6 +39,8 @@ namespace yengine { namespace graphics {
       std::cout << "Failed to compile vshader: " << std::endl
                 << &error[0] << std::endl;
       glDeleteShader(vertex);
+
+      return 0;
     }
 
     glShaderSource(fragment, 1, &fragSource, NULL);
@@ -55,6 +57,8 @@ namespace yengine { namespace graphics {
       std::cout << "Failed to compile vshader: " << std::endl
                 << &error[0] << std::endl;
       glDeleteShader(fragment);
+
+      return 0;
     }
 
     glAttachShader(program, vertex);
@@ -92,12 +96,12 @@ namespace yengine { namespace graphics {
 
   void Shader::setUniform4f(const GLchar* name, const glm::vec4& vec)
   {
-    glUniform4f(getUniformLocation(name), vec.x, vec.y, vec.z, vec.w);
+    glUniform4fv(getUniformLocation(name), 1, glm::value_ptr(vec));
   }
 
   void Shader::setUniform2f(const GLchar* name, const glm::vec2& vec)
   {
-    glUniform2f(getUniformLocation(name), vec.x, vec.y);
+    glUniform2fv(getUniformLocation(name), 1, glm::value_ptr(vec));
   }
 
 }};

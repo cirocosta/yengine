@@ -7,7 +7,8 @@ namespace yengine { namespace graphics {
 
   /**
    * Holds reference to memory location of a
-   * buffer on the GPU.
+   * buffer on the GPU. Used to instantiate basic
+   * ARRAY_BUFFER buffer types.
    */
   class Buffer
   {

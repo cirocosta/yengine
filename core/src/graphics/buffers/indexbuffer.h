@@ -18,14 +18,14 @@ namespace yengine { namespace graphics {
       // contais (e.g., vec3 --> 3).
       GLuint m_Count;
     public:
-      IndexBuffer (GLfloat * data, GLsizei count);
+      IndexBuffer (GLushort * data, GLsizei count);
       // use glDeleteBuffers here?
       ~IndexBuffer(){}
 
       void bind() const;
       void unbind() const;
 
-      inline GLuint getComponentCount() const {
+      inline GLuint getCount() const {
         return m_Count;
       }
   };

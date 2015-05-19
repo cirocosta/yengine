@@ -5,11 +5,16 @@ LIBS = -L/usr/local/lib
 SOURCE = main.cpp
 
 LDLIBS = -lGL -lglfw -lGLEW
+OBJECTS = ./src/graphics/window.o \
+					./src/graphics/shader.o \
+					./src/graphics/buffers/buffer.o \
+					./src/graphics/buffers/indexbuffer.o \
+					./src/graphics/buffers/vertexarray.o
 
 main: ./src/libyengine.a $(SOURCE)
 	$(CXX) $(CXXFLAGS) $(SOURCE) $(INCLUDES) $(LIBS) $(LDLIBS) -o $@ $<
 
-./src/libyengine.a: ./src/graphics/window.o ./src/graphics/shader.o
+./src/libyengine.a: $(OBJECTS)
 	$(AR) rvs $@ $^
 
 %.o: %.cpp
