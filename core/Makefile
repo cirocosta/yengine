@@ -10,7 +10,10 @@ OBJECTS = ./src/graphics/window.o \
 					./src/graphics/buffers/buffer.o \
 					./src/graphics/buffers/indexbuffer.o \
 					./src/graphics/buffers/vertexarray.o \
-					./src/graphics/simple2drenderer.o
+					./src/graphics/simple2drenderer.o \
+					./src/graphics/batchrenderer2d.o \
+					./src/graphics/sprite.o \
+					./src/graphics/static_sprite.o
 
 
 main: ./src/libyengine.a $(SOURCE)

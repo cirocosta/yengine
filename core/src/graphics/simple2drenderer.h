@@ -2,7 +2,7 @@
 #define SIMPLE2DRENDERER_H
 
 #include "renderer2d.h"
-#include "renderable2d.h"
+#include "static_sprite.h"
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -12,12 +12,18 @@
 
 namespace yengine { namespace graphics {
 
+  /**
+   * Very naive implementation of a renderer
+   * using a double-endend queue with simple
+   * calls to drawElements for all elements
+   * submitted.
+   */
   class Simple2DRenderer : public Renderer2D
   {
   private:
-    std::deque<const Renderable2D*> m_RenderQueue;
+    std::deque<const StaticSprite*> m_RenderQueue;
   public:
-    virtual void submit(Renderable2D* renderable) override;
+    virtual void submit(const Renderable2D* renderable) override;
     virtual void flush() override ;
   };
 

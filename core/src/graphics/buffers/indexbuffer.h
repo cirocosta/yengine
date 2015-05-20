@@ -19,8 +19,8 @@ namespace yengine { namespace graphics {
       GLuint m_Count;
     public:
       IndexBuffer (GLushort * data, GLsizei count);
-      // use glDeleteBuffers here?
-      ~IndexBuffer(){}
+      IndexBuffer (GLuint* data, GLsizei count);
+      ~IndexBuffer();
 
       void bind() const;
       void unbind() const;

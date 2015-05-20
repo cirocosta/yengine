@@ -19,8 +19,7 @@ namespace yengine { namespace graphics {
       GLuint m_ComponentCount;
     public:
       Buffer (GLfloat * data, GLsizei count, GLuint componentCount);
-      // use glDeleteBuffers here?
-      ~Buffer(){}
+      ~Buffer();
 
       void bind() const;
       void unbind() const;

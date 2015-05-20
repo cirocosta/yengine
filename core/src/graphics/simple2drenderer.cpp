@@ -2,26 +2,26 @@
 
 namespace yengine { namespace graphics {
 
-    void Simple2DRenderer::submit(Renderable2D* renderable)
+    void Simple2DRenderer::submit(const Renderable2D* renderable)
     {
-      m_RenderQueue.push_back(renderable);
+      m_RenderQueue.push_back((StaticSprite*) renderable);
     }
 
     void Simple2DRenderer::flush()
     {
       while (!m_RenderQueue.empty()) {
-        const Renderable2D* renderable = m_RenderQueue.front();
+        const StaticSprite* sprite = m_RenderQueue.front();
 
-        renderable->getVAO()->bind();
-        renderable->getIBO()->bind();
+        sprite->getVAO()->bind();
+        sprite->getIBO()->bind();
+        sprite->getShader().setUniformMat4("ml_matrix",
+            glm::translate(glm::mat4(1.0f), sprite->getPosition()));
 
-        renderable->getShader().setUniformMat4("ml_matrix",
-            glm::translate(glm::mat4(1.0f), renderable->getPosition()));
-        glDrawElements(GL_TRIANGLES, renderable->getIBO()->getCount(),
+        glDrawElements(GL_TRIANGLES, sprite->getIBO()->getCount(),
                        GL_UNSIGNED_SHORT, 0);
 
-        renderable->getVAO()->unbind();
-        renderable->getIBO()->unbind();
+        sprite->getVAO()->unbind();
+        sprite->getIBO()->unbind();
 
         m_RenderQueue.pop_front();
       }

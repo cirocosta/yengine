@@ -77,7 +77,7 @@ namespace yengine { namespace graphics {
   {
     GLenum err = glGetError();
     if (err != GL_NO_ERROR)
-      std::cout << "Errrrrror:" << err << std::endl;
+      std::cout << "Error:" << err << std::endl;
 
     glfwPollEvents();
     glfwSwapBuffers(m_Window);
