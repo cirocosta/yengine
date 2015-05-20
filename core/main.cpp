@@ -30,9 +30,9 @@ int main()
 
   srand(time(NULL));
 
-  for (float y = 0; y < 9.0f; y++) {
-    for (float x = 0; x < 16.0f; x++) {
-      sprites.push_back(new Sprite(x, y, 0.8f, 0.8f,
+  for (float y = 0; y < 9.0f; y += 0.5) {
+    for (float x = 0; x < 16.0f; x += 0.5) {
+      sprites.push_back(new Sprite(x, y, 0.4f, 0.4f,
             glm::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
     }
   }
