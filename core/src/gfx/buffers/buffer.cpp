@@ -1,6 +1,6 @@
 #include "buffer.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   Buffer::Buffer(GLfloat * data, GLsizei count, GLuint componentCount)
     : m_ComponentCount(componentCount)

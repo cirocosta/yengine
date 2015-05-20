@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
 #define RENDERER_MAX_SPRITES    60000
 #define RENDERER_VERTEX_SIZE    sizeof(VertexData)
@@ -30,8 +30,9 @@ namespace yengine { namespace graphics {
     GLuint m_VAO;
     GLuint m_VBO;
     IndexBuffer* m_IBO;
-    GLsizei m_IndexCount;
     VertexData* m_Buffer;
+
+    GLsizei m_IndexCount;
   public:
     BatchRenderer2D ();
     ~BatchRenderer2D ();
@@ -41,6 +42,10 @@ namespace yengine { namespace graphics {
      * lets us not have to waste time with
      * glMapBuffer pointer retrieving, casting,
      * etc. Just submit on iteration.
+     *
+     * TODO optimize for faster rendering
+     * regarding the submit phase. We could
+     * probably just pass an array.
      */
     void begin();
     void submit(const Renderable2D* renderable) override;

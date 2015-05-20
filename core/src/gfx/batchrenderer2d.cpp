@@ -1,6 +1,6 @@
 #include "batchrenderer2d.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   BatchRenderer2D::BatchRenderer2D()
   {
@@ -136,4 +136,4 @@ namespace yengine { namespace graphics {
     m_IndexCount = 0;
   }
 
-}} // ns yengine // ns graphics
+}} // ns yengine // ns gfx

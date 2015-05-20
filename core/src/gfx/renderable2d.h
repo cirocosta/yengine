@@ -8,7 +8,7 @@
 #include <glm/glm.hpp>
 
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   /**
    * Structure that represents the data that the
@@ -43,6 +43,6 @@ namespace yengine { namespace graphics {
     inline const glm::vec4& getColor() const { return m_Color; }
   };
 
-}} // ns graphics // ns yengine
+}} // ns gfx // ns yengine
 
 #endif

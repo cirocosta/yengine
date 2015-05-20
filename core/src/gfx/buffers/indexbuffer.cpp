@@ -1,6 +1,6 @@
 #include "indexbuffer.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   IndexBuffer::IndexBuffer(GLushort* data, GLsizei count)
     : m_Count(count)

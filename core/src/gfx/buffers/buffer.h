@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   /**
    * Holds reference to memory location of a

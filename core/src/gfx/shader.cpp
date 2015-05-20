@@ -1,6 +1,6 @@
 #include "./shader.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
   Shader::Shader(const char* vertPath, const char* fragPath)
       : m_VertPath(vertPath), m_FragPath(fragPath)
   {

@@ -1,6 +1,6 @@
 #include "vertexarray.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   VertexArray::VertexArray ()
   {

@@ -1,6 +1,6 @@
 #include "window.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
   void framebuffer_size_callback(GLFWwindow* win, int w, int h);
   void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
   void mouse_button_callback(GLFWwindow* window, int button,
@@ -138,5 +138,5 @@ namespace yengine { namespace graphics {
     win->m_Height = height;
   }
 
-}} // graphics  // yengine
+}} // gfx  // yengine
 

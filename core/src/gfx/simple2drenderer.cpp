@@ -1,6 +1,6 @@
 #include "simple2drenderer.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
     void Simple2DRenderer::submit(const Renderable2D* renderable)
     {

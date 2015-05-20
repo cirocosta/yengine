@@ -10,7 +10,7 @@
 
 #include <deque>
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   /**
    * Very naive implementation of a renderer

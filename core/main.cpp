@@ -1,9 +1,9 @@
-#include "src/graphics/window.h"
-#include "src/graphics/shader.h"
+#include "src/gfx/window.h"
+#include "src/gfx/shader.h"
 
-#include "src/graphics/batchrenderer2d.h"
-#include "src/graphics/renderable2d.h"
-#include "src/graphics/sprite.h"
+#include "src/gfx/batchrenderer2d.h"
+#include "src/gfx/renderable2d.h"
+#include "src/gfx/sprite.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -11,11 +11,11 @@
 #include <time.h>
 #include <vector>
 
+  using namespace yengine;
+  using namespace gfx;
 
 int main()
 {
-  using namespace yengine;
-  using namespace graphics;
 
   Window window("Yengine!", 960, 540);
   glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
@@ -57,8 +57,6 @@ int main()
       renderer.submit(sprites[i]);
     renderer.end();
     renderer.flush();
-
-    printf("Sprites: %d\n", (int) sprites.size());
 
     window.update();
   }

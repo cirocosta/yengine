@@ -5,7 +5,7 @@
 #include <GL/glew.h>
 #include "buffer.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
   /**
    * Encapsulates VAOs, which are responsible for
    * storing all of the state needed to supply

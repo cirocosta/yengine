@@ -14,7 +14,7 @@
 #include <iostream>
 
 namespace yengine {
-  namespace graphics {
+  namespace gfx {
 
     class Window
     {
@@ -74,7 +74,7 @@ namespace yengine {
       friend void cursor_position_callback(GLFWwindow* window, double xpos,
                                            double ypos);
     };
-  } // ns graphics
+  } // ns gfx
 } // ns yengine
 
 

@@ -15,7 +15,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "../utils/fileinput.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
   class Shader
   {
   private:

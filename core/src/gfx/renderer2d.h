@@ -4,7 +4,7 @@
 #include "renderable2d.h"
 #include "static_sprite.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   /**
    * Base class for 2d renderers. Simply an

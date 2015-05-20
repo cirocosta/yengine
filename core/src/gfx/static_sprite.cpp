@@ -1,6 +1,6 @@
 #include "static_sprite.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   StaticSprite::StaticSprite(float x, float y, float width, float height,
                              glm::vec4 color, Shader& shader)

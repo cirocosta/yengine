@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   Sprite::Sprite(float x, float y,
                  float width, float height,

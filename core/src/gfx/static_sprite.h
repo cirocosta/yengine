@@ -7,7 +7,7 @@
 
 #include "renderable2d.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   class StaticSprite : public Renderable2D
   {

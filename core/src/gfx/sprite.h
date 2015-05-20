@@ -3,7 +3,7 @@
 
 #include "renderable2d.h"
 
-namespace yengine { namespace graphics {
+namespace yengine { namespace gfx {
 
   class Sprite : public Renderable2D
   {

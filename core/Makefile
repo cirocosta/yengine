@@ -5,15 +5,15 @@ LIBS = -L/usr/local/lib
 SOURCE = main.cpp
 
 LDLIBS = -lGL -lglfw -lGLEW
-OBJECTS = ./src/graphics/window.o \
-					./src/graphics/shader.o \
-					./src/graphics/buffers/buffer.o \
-					./src/graphics/buffers/indexbuffer.o \
-					./src/graphics/buffers/vertexarray.o \
-					./src/graphics/simple2drenderer.o \
-					./src/graphics/batchrenderer2d.o \
-					./src/graphics/sprite.o \
-					./src/graphics/static_sprite.o
+OBJECTS = ./src/gfx/window.o \
+					./src/gfx/shader.o \
+					./src/gfx/buffers/buffer.o \
+					./src/gfx/buffers/indexbuffer.o \
+					./src/gfx/buffers/vertexarray.o \
+					./src/gfx/simple2drenderer.o \
+					./src/gfx/batchrenderer2d.o \
+					./src/gfx/sprite.o \
+					./src/gfx/static_sprite.o
 
 
 main: ./src/libyengine.a $(SOURCE)
