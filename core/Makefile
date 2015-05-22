@@ -1,10 +1,14 @@
 CXX = clang++-3.5
-CXXFLAGS = -Wall -std=c++11
 INCLUDES = -I/usr/local/include/
 LIBS = -L/usr/local/lib
-SOURCE = main.cpp
-
+BUILD := debug
 LDLIBS = -lGL -lglfw -lGLEW
+
+cxxflags.debug := -g -DNDEBUG
+cxxflags.release := -O3
+CXXFLAGS := -Wall -std=c++11 ${cxxflags.${BUILD}}
+
+SOURCE = main.cpp
 OBJECTS = ./src/gfx/window.o \
 					./src/gfx/shader.o \
 					./src/gfx/buffers/buffer.o \

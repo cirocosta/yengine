@@ -4,6 +4,7 @@
 #include "src/gfx/batchrenderer2d.h"
 #include "src/gfx/renderable2d.h"
 #include "src/gfx/sprite.h"
+#include "src/utils/timer.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -37,6 +38,8 @@ int main()
     }
   }
 
+  Timer timer;
+
   BatchRenderer2D renderer;
 
   shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
@@ -57,6 +60,8 @@ int main()
       renderer.submit(sprites[i]);
     renderer.end();
     renderer.flush();
+
+    timer.countFpsAndTick();
 
     window.update();
   }

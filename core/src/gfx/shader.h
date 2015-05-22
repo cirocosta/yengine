@@ -37,6 +37,7 @@ namespace yengine { namespace gfx {
     void disable() const;
   private:
     GLuint load();
+    // TODO optimize this
     GLint getUniformLocation(const GLchar* name);
   };
 

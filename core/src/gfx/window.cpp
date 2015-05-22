@@ -51,6 +51,7 @@ namespace yengine { namespace gfx {
     glfwSetKeyCallback(m_Window, key_callback);
     glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
     glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+    glfwSwapInterval(0.0); // explicitly turning vsync off
 
     if (glewInit() != GLEW_OK) {
       std::cerr << "could not initialize glew" << std::endl;

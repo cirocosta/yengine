@@ -18,7 +18,7 @@ namespace yengine { namespace gfx {
   struct VertexData
   {
     glm::vec3 vertex;
-    glm::vec4 color;
+    unsigned int color;
   };
 
   /**
