@@ -27,4 +27,4 @@ namespace yengine { namespace gfx {
       }
     }
 
-}}
+}} // ns
