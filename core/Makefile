@@ -11,13 +11,15 @@ CXXFLAGS := -Wall -std=c++11 ${cxxflags.${BUILD}}
 SOURCE = main.cpp
 OBJECTS = ./src/gfx/window.o \
 					./src/gfx/shader.o \
-					./src/gfx/buffers/buffer.o \
-					./src/gfx/buffers/indexbuffer.o \
-					./src/gfx/buffers/vertexarray.o \
 					./src/gfx/simple2drenderer.o \
 					./src/gfx/batchrenderer2d.o \
 					./src/gfx/sprite.o \
-					./src/gfx/static_sprite.o
+					./src/gfx/static_sprite.o \
+					./src/gfx/buffers/buffer.o \
+					./src/gfx/buffers/indexbuffer.o \
+					./src/gfx/buffers/vertexarray.o \
+					./src/gfx/layers/layer.o \
+					./src/gfx/layers/tilelayer.o
 
 
 main: ./src/libyengine.a $(SOURCE)

@@ -47,9 +47,9 @@ namespace yengine { namespace gfx {
      * regarding the submit phase. We could
      * probably just pass an array.
      */
-    void begin();
+    void begin() override;
     void submit(const Renderable2D* renderable) override;
-    void end();
+    void end() override;
     void flush() override;
   private:
     void init();
