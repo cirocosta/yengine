@@ -2,6 +2,7 @@
 #define BATCHRENDERER2D_H
 
 #include "renderer2d.h"
+#include "renderable2d.h"
 #include "buffers/indexbuffer.h"
 #include <glm/gtc/type_ptr.hpp>
 
@@ -42,10 +43,6 @@ namespace yengine { namespace gfx {
      * lets us not have to waste time with
      * glMapBuffer pointer retrieving, casting,
      * etc. Just submit on iteration.
-     *
-     * TODO optimize for faster rendering
-     * regarding the submit phase. We could
-     * probably just pass an array.
      */
     void begin() override;
     void submit(const Renderable2D* renderable) override;

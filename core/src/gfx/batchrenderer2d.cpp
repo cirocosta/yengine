@@ -100,29 +100,36 @@ namespace yengine { namespace gfx {
 
     unsigned int c = a << 24 | b << 16 | g << 8 | r;
 
+    // TODO improve this. Lot's of conversions
+    //      going on
+
     // origin
-    m_Buffer->vertex = position;
+    m_Buffer->vertex = glm::vec3(
+        *m_TransformationBack * glm::vec4(position, 1.0));
     m_Buffer->color = c;
     m_Buffer++;
 
     // upper left
-    m_Buffer->vertex = glm::vec3(position.x,
-                                 position.y + size.y,
-                                 position.z);
+    m_Buffer->vertex = glm::vec3(
+        *m_TransformationBack * glm::vec4(position.x,
+                                          position.y + size.y,
+                                          position.z, 1.0));
     m_Buffer->color = c;
     m_Buffer++;
 
     // upper right
-    m_Buffer->vertex = glm::vec3(position.x + size.x,
-                                 position.y + size.y,
-                                 position.z);
+    m_Buffer->vertex = glm::vec3(
+        *m_TransformationBack * glm::vec4(position.x + size.x,
+                                          position.y + size.y,
+                                          position.z, 1.0));
     m_Buffer->color = c;
     m_Buffer++;
 
     // bottom right
-    m_Buffer->vertex = glm::vec3(position.x + size.x,
-                                 position.y,
-                                 position.z);
+    m_Buffer->vertex = glm::vec3(
+        *m_TransformationBack * glm::vec4(position.x + size.x,
+                                          position.y,
+                                          position.z, 1.0));
     m_Buffer->color = c;
     m_Buffer++;
 

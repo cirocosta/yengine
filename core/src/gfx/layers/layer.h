@@ -23,6 +23,16 @@ namespace yengine { namespace gfx {
   public:
     virtual ~Layer();
     virtual void add(Renderable2D* renderable);
+
+    /**
+     * Enables the shader associated with the
+     * layer, begins the layer's renderer and
+     * the start calling its renderables
+     * submit method (for submitting themselves
+     * to the renderer). Notice that the
+     * renderables implements the submit routine
+     * for getting inserted in a renderable.
+     */
     virtual void render();
   };
 

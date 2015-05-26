@@ -19,7 +19,8 @@ OBJECTS = ./src/gfx/window.o \
 					./src/gfx/buffers/indexbuffer.o \
 					./src/gfx/buffers/vertexarray.o \
 					./src/gfx/layers/layer.o \
-					./src/gfx/layers/tilelayer.o
+					./src/gfx/layers/tilelayer.o \
+					./src/gfx/layers/group.o
 
 
 main: ./src/libyengine.a $(SOURCE)
