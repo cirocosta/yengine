@@ -104,5 +104,11 @@ namespace yengine { namespace gfx {
     glUniform2fv(getUniformLocation(name), 1, glm::value_ptr(vec));
   }
 
+  void Shader::setUniform1i(const GLchar* name, const int value)
+  {
+    glUniform1i(getUniformLocation(name), value);
+  }
+
+
 }};
 

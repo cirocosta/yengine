@@ -32,6 +32,7 @@ namespace yengine { namespace gfx {
     void setUniformMat4(const GLchar* name, const glm::mat4& matrix);
     void setUniform4f(const GLchar* name, const glm::vec4& vec);
     void setUniform2f(const GLchar* name, const glm::vec2& vec);
+    void setUniform1i(const GLchar* name, const int value);
 
     void enable() const;
     void disable() const;

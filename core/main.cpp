@@ -3,6 +3,7 @@
 #include "src/gfx/sprite.h"
 #include "src/gfx/layers/tilelayer.h"
 #include "src/gfx/layers/group.h"
+#include "src/gfx/texture.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -13,30 +14,27 @@
 using namespace yengine;
 using namespace gfx;
 
-#if 0
 int main()
 {
-
   Window window("Yengine!", 960, 540);
   glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
 
   Shader* s = new Shader("./src/shaders/basic-vert.glsl",
-                "./src/shaders/basic-frag.glsl");
+                         "./src/shaders/basic-frag.glsl");
   Shader& shader = *s;
-  shader.enable();
-  shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
-
   TileLayer layer(&shader);
 
-  Group* group = new Group(glm::translate(glm::vec3(-15.0f, 5.0f, 0.0f)));
-  group->add(new Sprite(0, 0, 6, 3, glm::vec4(1,1,1,1)));
+  for (float y = -9.0; y < 9.0f; y++)
+    for (float x = -16.0f; x < 16.0f; x++)
+      layer.add(new Sprite(x, y, 0.9f, 0.9f, glm::vec4(1.0, 1.0, 1.0, 1.0)));
 
-  Group* button = new Group(glm::translate(glm::vec3(0.5f, 0.5f, 0.0f)));
-  button->add(new Sprite(0, 0, 5.0f, 2.0f, glm::vec4(1,0,1,1)));
-  button->add(new Sprite(0.5f, 0.5f, 3.0f, 1.0f, glm::vec4(0.9f, 1.0f, 0.8f, 1)));
-  group->add(button);
+  glActiveTexture(GL_TEXTURE0);
+  Texture texture("test.png");
+  texture.bind();
 
-  layer.add(group);
+  shader.enable();
+  shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
+  shader.setUniform1i("tex", 0);
 
   while (!window.closed())
   {
@@ -46,26 +44,11 @@ int main()
     window.getMousePosition(x, y);
     shader.enable();
     shader.setUniform2f("light_pos", glm::vec2(
-        (float)(x * 16.0f / 960.0f), (float)(9.0f - y * 9.0f / 540.0f))
-    );
-
+        (float)(x * 32.0f / 960.0f - 16.0f), (float)(9.0f - y * 18.0f / 540.0f)));
     layer.render();
-
     window.update();
   }
 
-  delete s;
-  delete group;
-  delete button;
-
   return 0;
 }
-#endif
 
-#include <FreeImage.h>
-
-int main()
-{
-
-  return 0;
-}
