@@ -13,6 +13,7 @@
 using namespace yengine;
 using namespace gfx;
 
+#if 0
 int main()
 {
 
@@ -56,6 +57,15 @@ int main()
   delete s;
   delete group;
   delete button;
+
+  return 0;
+}
+#endif
+
+#include <FreeImage.h>
+
+int main()
+{
 
   return 0;
 }

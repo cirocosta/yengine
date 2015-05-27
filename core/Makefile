@@ -1,8 +1,8 @@
 CXX = clang++-3.5
-INCLUDES = -I/usr/local/include/
-LIBS = -L/usr/local/lib
+INCLUDES = -I./src -I/usr/local/include/ -I/usr/include
+LIBS = -L/usr/local/lib -L/usr/lib
 BUILD := debug
-LDLIBS = -lGL -lglfw -lGLEW
+LDLIBS = -lGL -lglfw -lGLEW -lfreeimage
 
 cxxflags.debug := -g -DNDEBUG
 cxxflags.release := -O3

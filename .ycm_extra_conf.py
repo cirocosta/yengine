@@ -50,18 +50,12 @@ flags = [
   '-std=c++11',
   '-x',
   'c++',
-
-  '-isystem',
-  '../llvm/include',
-  '-isystem',
-  '../llvm/tools/clang/include',
-  '-isystem',
-  '/usr/local/include/',
-  '-isystem',
-  '/usr/include/',
-
   '-I',
-  '.',
+  './src',
+  '-I',
+  '/usr/include',
+  '-I',
+  '/usr/local/include'
 ]
 
 
